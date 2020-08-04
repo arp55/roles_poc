@@ -1,0 +1,71 @@
+{
+  "name": "user",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "hidden": [
+    "password",
+    "verificationToken"
+  ],
+  "protected": [
+    "email"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "User account name",
+      "min": 6,
+      "max": 24
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "password": {
+      "type": "string",
+      "required": true
+    },
+    "verificationToken": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "superBrands": {
+      "type": "hasMany",
+      "model": "super_brand",
+      "foreignKey": "ownerId"
+    },
+    "brands": {
+      "type": "hasMany",
+      "model": "brand",
+      "foreignKey": "ownerId"
+    },
+    "stores": {
+      "type": "hasMany",
+      "model": "store",
+      "foreignKey": "ownerId"
+    },
+    "waiters": {
+      "type": "hasOne",
+      "model": "waiter",
+      "foreignKey": "userId"
+    }
+  },
+  "acls": [
+    {
+      "accessType": "*",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "DENY"
+    }
+  ],
+  "methods": {}
+}

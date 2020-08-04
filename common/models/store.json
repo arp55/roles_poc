@@ -1,0 +1,38 @@
+{
+  "name": "store",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "brand": {
+      "type": "belongsTo",
+      "model": "brand",
+      "foreignKey": "brandId"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "ownerId"
+    },
+    "waiters": {
+      "type": "hasMany",
+      "model": "waiter",
+      "foreignKey": "storeId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
